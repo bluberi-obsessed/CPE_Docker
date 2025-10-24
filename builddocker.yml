@@ -1,0 +1,16 @@
+- name: Build Docker Image
+  hosts: localhost
+  become: true
+  tasks:
+
+    - name: Install Docker SDK for Python
+      apt:
+        name: python3-docker
+        state: present
+
+    - name: Build Docker image
+      community.docker.docker_image:
+        name: web_db_image
+        source: build
+        build:
+          path: /home/hazel/CPE_SysAd2/CPE_Docker
